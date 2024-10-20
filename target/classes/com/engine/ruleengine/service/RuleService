@@ -1,0 +1,33 @@
+package com.yourcompany.ruleengine.service;
+
+import com.yourcompany.ruleengine.model.Node;
+import com.yourcompany.ruleengine.model.RuleEntity;
+import com.yourcompany.ruleengine.repository.RuleRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Map;
+
+@Service
+public class RuleService {
+
+    @Autowired
+    private RuleRepository ruleRepository;
+
+    // Create AST from rule string and save to the database
+    public Node createRule(String ruleString) {
+        // Save the rule string in the database
+        RuleEntity ruleEntity = new RuleEntity(ruleString);
+        ruleRepository.save(ruleEntity);
+
+        // For simplicity, returning a dummy AST Node
+        return new Node("operator", null, null, "AND");
+    }
+
+    // Evaluate the rule (AST) against the provided data
+    public boolean evaluateRule(Node root, Map<String, Object> data) {
+        // Example of evaluating the AST node logic
+        // Extend this logic to actually walk through the AST
+        return true;  // Placeholder for actual evaluation logic
+    }
+}

@@ -1,0 +1,38 @@
+package com.yourcompany.ruleengine.controller;
+
+import com.yourcompany.ruleengine.model.Node;
+import com.yourcompany.ruleengine.service.RuleService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+
+@RestController
+@RequestMapping("/api/rules")
+public class RuleController {
+
+    private final RuleService ruleService;
+
+    public RuleController(RuleService ruleService) {
+        this.ruleService = ruleService;
+    }
+
+    @PostMapping("/create")
+    public Node createRule(@RequestBody Map<String, String> rule) {
+        System.out.println("Received request to create rule: " + rule);
+        String ruleString = rule.get("ruleString");
+        return ruleService.createRule(ruleString);
+    }
+
+    @PostMapping("/evaluate")
+    public boolean evaluateRule(@RequestBody Map<String, Object> data) {
+        Node root = new Node("operator", null, null, "AND");
+        return ruleService.evaluateRule(root, data);
+    }
+
+    @GetMapping("/welcome")
+    System.out.println("Welcomee");
+    
+}
