@@ -1,0 +1,17 @@
+document.getElementById('ruleForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const rule = document.getElementById('rule').value;
+
+    fetch('http://localhost:8081/api/rules/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(rule)
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('response').innerText = 'Rule Created: ' + JSON.stringify(data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});

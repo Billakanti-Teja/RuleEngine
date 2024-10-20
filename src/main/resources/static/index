@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rule Engine</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>Rule Engine with AST</h1>
+
+    <form id="ruleForm">
+        <label for="rule">Enter Rule:</label>
+        <input type="text" id="rule" name="rule" placeholder="Enter a rule" required>
+        <button type="submit">Create Rule</button>
+    </form>
+
+    <div id="response"></div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
